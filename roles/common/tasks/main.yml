@@ -1,0 +1,16 @@
+---
+- name: Updating server packages
+
+  apt: update_cache=yes cache_valid_time=36000
+
+- name: Installing multiple packades on servers
+
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - git
+    - python
+    - docker
+    - nginx
+    - apache2

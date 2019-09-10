@@ -1,0 +1,9 @@
+---
+- name: Setup target servers
+  hosts: myhosts
+  user: pi
+  #remote_user: user
+  become: yes
+
+  roles:
+    - common
