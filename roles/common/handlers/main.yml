@@ -1,0 +1,4 @@
+---
+# Restart sshd handler
+- name: Restart sshd
+  service: name: ssr state=restarted
