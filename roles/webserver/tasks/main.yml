@@ -1,0 +1,37 @@
+---
+- name: Updating Web server packages
+
+  apt:
+    update_cache=yes
+    cache_valid_time=36000
+
+- name: Upgrade all installed Web server packages to latest version
+
+  apt:
+    upgrade: dist
+
+- name: Remove useless packages from cach and remove all dependencies that are no longer required
+
+  apt:
+    autoclean: yes
+    autoremove: yes
+
+- name: Installing multiple packages on Web servers
+
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - python
+    - docker
+    - apache2
+
+- name: Make sure there's no packages on server
+
+  apt:
+    name: "{{ packages }}"
+    state: absent
+  vars:
+    packages:
+    - nginx
+    - git

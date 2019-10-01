@@ -1,9 +1,7 @@
-[myhosts]
-
 #My example hosts here
+[myhosts]
 192.168.1.87
-#172.20.10.3
 
-#[webservers]
 #My webservers
-#192.168.0.11
+[webservers]
+192.168.1.88

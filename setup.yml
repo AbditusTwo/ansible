@@ -4,6 +4,12 @@
   user: pi
   #remote_user: user
   become: yes
-
   roles:
     - common
+
+- name: Setup Web servers
+  hosts: webservers
+  user: pi
+  become: yes
+  roles:
+    - webserver

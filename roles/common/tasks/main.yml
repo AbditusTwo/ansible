@@ -1,7 +1,19 @@
 ---
 - name: Updating server packages
 
-  apt: update_cache=yes cache_valid_time=36000
+  apt:
+    update_cache=yes
+    cache_valid_time=36000
+
+- name: Upgrade all packages to latest version
+  apt:
+    upgrade: dist
+
+- name: Remove useless packages from cach and remove all dependencies that are no longer required
+
+  apt:
+    autoclean: yes
+    autoremove: yes
 
 - name: Installing multiple packades on servers
 
@@ -9,8 +21,5 @@
     name: "{{ packages }}"
   vars:
     packages:
-    - git
     - python
     - docker
-    - nginx
-    - apache2
