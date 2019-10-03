@@ -1,5 +1,5 @@
 ---
-- name: Updating server packages
+- name: Updating all packages cache
 
   apt:
     update_cache=yes
@@ -9,13 +9,13 @@
   apt:
     upgrade: dist
 
-- name: Remove useless packages from cach and remove all dependencies that are no longer required
+- name: Remove all useless packages from cache and remove all dependencies that are no longer required
 
   apt:
     autoclean: yes
     autoremove: yes
 
-- name: Installing multiple packades on servers
+- name: Installing common packages on servers
 
   apt:
     name: "{{ packages }}"

@@ -1,6 +1,2 @@
 ---
-# Restart sshd handler
-- name: Restart sshd
-  service:
-    name: ssh
-    state: restarted
+# handlers file for webserver

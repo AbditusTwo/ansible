@@ -1,11 +1,17 @@
 ---
 - name: Setup target servers
-  hosts: myhosts
+  hosts: myhosts, webservers, databases
   user: pi
-  #remote_user: user
   become: yes
   roles:
     - common
+
+- name: Setup Database servers
+  hosts: databases
+  user: pi
+  become: yes
+  roles:
+    - database
 
 - name: Setup Web servers
   hosts: webservers
