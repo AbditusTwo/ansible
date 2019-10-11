@@ -1,19 +1,26 @@
 ---
-- name: Setup target servers
-  hosts: myhosts, webservers, databases
+- name: Common setup for target servers
+  hosts: master, webservers, databases
   user: pi
   become: yes
   roles:
     - common
 
-- name: Setup Database servers
+- name: Setup NodeJS on Web server
+  hosts: master
+  user: pi
+  become: yes
+  roles:
+    - nodejs
+
+- name: Setup for Database servers
   hosts: databases
   user: pi
   become: yes
   roles:
     - database
 
-- name: Setup Web servers
+- name: Setup for Web servers
   hosts: webservers
   user: pi
   become: yes

@@ -1,0 +1,31 @@
+---
+
+- name: Download NodeJS from URL
+  get_url: 
+    url: https://nodejs.org/dist/v10.16.3/{{ node_version }}.tar.xz
+    dest: /tmp
+
+- name: Unpack NodeJS
+  unarchive:
+    src: /tmp/{{ node_version }}.tar.xz
+    dest: /tmp/
+
+#- name: Copy NodeJS to users binary
+#  copy:
+#    state: present
+#    remote_src: yes   
+#    src: /tmp/{{ node_version }}/
+#    dest: /usr/local/
+#  state: present
+#  command: cp -R /tmp/{{ node_version }}/{{ item }} /usr/local/
+#  with_items:
+#    - "bin"
+#    - "CHANGELOG.md"
+#    - "include"
+#    - "lib"
+#    - "LICENSE"
+#    - "README.md"
+#    - "share"
+
+#- name: Install angular cli
+#  command: npm install -g @angular/cli

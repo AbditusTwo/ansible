@@ -1,0 +1,7 @@
+---
+- name: Setup Jenkins no server
+  hosts: master
+  user: pi
+  become: yes
+  roles:
+    - jenkins

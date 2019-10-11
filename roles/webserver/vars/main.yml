@@ -1,2 +1,5 @@
 ---
 # vars file for webserver
+http_port: 8081
+domain: example.com
+log_volume: /var/log/myansiblelog

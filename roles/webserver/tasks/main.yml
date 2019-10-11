@@ -1,2 +1,36 @@
 ---
 # tasks file for webserver
+- name: Install apache2 on server
+
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+    state: latest
+  vars:
+    packages:
+    - apache2
+
+#- name: Enable mod_rewrite
+#  apache2_module:
+#    name: rewrite
+#    state: present
+
+- name: Apache2 listen port {{ http_port }}
+  lineinfile: dest=/etc/apache2/ports.conf regexp="^Listen " line="Listen {{ http_port }}" state=present
+  notify:
+    - restart apache2 service
+
+- name: Apache2 virtoalhost port {{ http_port }}
+  lineinfile: dest=/etc/apache2/sites-available/000-default.conf regexp="^<VirtualHost \*:" line="<VirtualHost *:{{ http_port }}>" state=present
+  notify:
+    - restart apache2 service
+
+- name: Create virtual host file
+  template: src=virtualhost.conf dest=/etc/apache2/sites-available/{{ domain }}.conf
+
+- name: Apache2 enable site {{ domain }}
+  command: a2ensite {{ domain }}
+  args:
+    creates: /etc/apache2/site-enabled/{{ domain }}.conf
+  notify:
+    - restart apache2 service

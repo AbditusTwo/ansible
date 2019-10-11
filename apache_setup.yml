@@ -1,0 +1,7 @@
+---
+- name: Setup for Web servers
+  hosts: webservers
+  user: pi
+  become: yes
+  roles:
+    - webserver
