@@ -1,5 +1,5 @@
 ---
-- name: Setup Jenkins no server
+- name: Setup Jenkins on server
   hosts: master
   user: pi
   become: yes
